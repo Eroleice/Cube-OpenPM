@@ -99,11 +99,26 @@ Coding report 保存在 `.openpm/progression/04.coding/`。
 - 完成时间: <ISO timestamp>
 
 ## 摘要
-## 修改文件
-## 已运行检查
-## 风险
+## 修改文件列表
+## 新增文件列表
+## 文件分类与范围
+## Git 审计证据
+## 执行测试命令和结果
+## 验收结果
+## SOW 验收映射
+## stderr
 ## 交接备注
 ```
+
+Coding report 必须作为 audit 可消费的证据包，而不只是执行摘要：
+
+- 必须列出修改文件和新增文件。
+- 必须区分产品代码、测试代码、工程配置、文档和 OpenPM progression artifact。
+- 必须记录 `git status --short`、`git diff --name-status` 和 `git diff --stat`，或说明无法获得的原因。
+- 对 code 阶段新增文件，OpenPM 可以执行 `git add -N` 建立 intent-to-add，只用于让 `git diff` 展示新增文件内容；这不等于正式 stage 或 commit。
+- 必须列出可解析的测试/验证命令结论；成功命令可以只记录“通过”，失败、超时或异常必须保留必要输出。
+- 必须把 SOW 中的验收、必跑检查、测试要求或修改范围条目映射到文件证据、检查证据和 audit 核验方式。
+- Coding report 不直接替 QA 判定验收通过；最终结论仍由 audit 基于 SOW、diff、源码事实和检查证据给出。
 
 ## 完整会诊门禁
 
@@ -144,6 +159,8 @@ Audit 结论必须是以下之一：
 - `阻塞`：缺少真实执行证据、检查失败、范围越界、关键需求未满足、审计格式无效或风险无法判断；不得进入 commit。
 
 Audit 必须检查 coding report、SOW、task、git status、相关 git diff 和必要源码事实。
+
+Audit 不能把 OpenCode `success` 或退出码 `0` 单独视为验收通过；但当 coding report 已按标准章节提供测试/验证命令通过结论时，也不能仅因成功 stdout/stderr 未全文内联而阻塞。阻塞应基于检查缺失、检查失败、diff/源码与报告矛盾、SOW 验收不满足、范围越界或风险无法判断。
 
 ```md
 # NNN.task-title
