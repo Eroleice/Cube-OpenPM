@@ -1,0 +1,186 @@
+# 输出契约
+
+## IDEA
+
+`IDEA.md` 由用户手写，保存在 `.openpm/progression/00.documents/IDEA.md`。
+
+它可以是不专业、不完整的项目想法，但不应包含密钥或账号信息。
+
+## DESIGN
+
+`DESIGN.md` 由 `openpm design` 根据 IDEA 整理，保存在 `.openpm/progression/00.documents/DESIGN.md`。
+
+必须包含：
+
+- 项目愿景
+- 核心目标
+- 功能范围
+- 不做范围
+- 验收口径
+
+## MSC
+
+`MSC.md` 由 `openpm msc` 根据 DESIGN 生成，保存在 `.openpm/progression/00.documents/MSC.md`。
+
+必须包含：
+
+- 架构目标
+- 模块列表
+- 模块通信
+- 数据流
+- 风险与约束
+
+## Milestone
+
+Milestone 保存在 `.openpm/progression/01.milestone/`。
+
+```md
+# NNN.milestone-title
+
+- 来源：DESIGN.md + MSC.md
+
+## 目标
+## 范围
+## 预计 Task 切片
+## 验收
+```
+
+## Task
+
+Task 保存在 `.openpm/progression/02.task/`。
+
+每个 task 必须可以独立测试和验收，切片大小要适合一次 SOW/code/audit 循环。
+
+```md
+# NNN.task-M-from-XXX.milestone-Y
+
+- 来源 Milestone: .openpm/progression/01.milestone/<milestone>.md
+
+## 目标
+## 独立验收标准
+## 建议切片大小
+## 不做
+## 后续 SOW 备注
+```
+
+命名规则：
+
+- `NNN` 是全局 task 文档序号，跨 milestone 连续递增，不和 milestone 前缀绑定。
+- `task-M` 是当前来源 milestone 内的 task 顺位，从 `task-1` 开始递增。
+- `from-XXX.milestone-Y` 必须准确引用来源 milestone。
+- 示例：`001.task-1-from-001.milestone-1`、`002.task-2-from-001.milestone-1`、`003.task-1-from-002.milestone-2`。
+
+## SOW
+
+SOW 是 Statement of Work，保存在 `.openpm/progression/03.sow/`。
+
+```md
+# NNN.task-title
+
+- 来源 Task: .openpm/progression/02.task/<task>.md
+
+## 施工目标
+## 当前事实
+## 修改范围
+## 不做
+## 必跑检查
+## 风险
+```
+
+## Coding Report
+
+Coding report 保存在 `.openpm/progression/04.coding/`。
+
+```md
+# NNN.task-title
+
+- 来源 SOW: .openpm/progression/03.sow/<sow>.md
+- 执行者: OpenCode
+- 完成时间: <ISO timestamp>
+
+## 摘要
+## 修改文件
+## 已运行检查
+## 风险
+## 交接备注
+```
+
+## 完整会诊门禁
+
+完整会诊门禁不单独落盘为 progression artifact，但会写入 story log、project memory 和最终主责 Agent 的上下文。
+
+所有参与门禁核验的 Agent，包括 QA、Producer、Architect 和自定义门禁 Agent，都必须在输出第一段单独包含一行结论：
+
+```md
+- 结论：通过|有条件通过|需要返工|阻塞
+```
+
+门禁输出必须包含这些二级标题：
+
+- 核验范围
+- 结论
+- 发现
+- 必须满足的约束
+- 放行条件
+
+结论为 `需要返工` 或 `阻塞` 时，当前完整会诊不得继续生成最终 artifact。
+
+## Audit
+
+Audit 保存在 `.openpm/progression/05.audit/`。
+
+Audit 结论必须是以下之一：
+
+- 通过
+- 有条件通过
+- 需要返工
+- 阻塞
+
+结论判定标准：
+
+- `通过`：SOW 验收项有证据闭环，必跑检查已执行或合理豁免，未发现必须关闭的问题。
+- `有条件通过`：核心验收可放行，但存在明确非阻塞风险、后续 task 或人工确认项；必须说明条件和 owner。
+- `需要返工`：实现方向基本可用，但存在必须关闭的问题；必须列出最小返工范围。
+- `阻塞`：缺少真实执行证据、检查失败、范围越界、关键需求未满足、审计格式无效或风险无法判断；不得进入 commit。
+
+Audit 必须检查 coding report、SOW、task、git status、相关 git diff 和必要源码事实。
+
+```md
+# NNN.task-title
+
+- 审查类型: Agent audit | 本地 audit 骨架
+- 来源 Coding Report: .openpm/progression/04.coding/<coding>.md
+- 审查者: QA
+- 完成时间: <ISO timestamp>
+- 结论: 通过 | 有条件通过 | 需要返工 | 阻塞
+
+## 摘要
+## 验收证据
+## 发现的问题
+## 风险与条件
+## 必须返工项
+## 后续关键点
+```
+
+## Commit Record
+
+Commit record 保存在 `.openpm/progression/06.commit/`。
+
+`openpm commit` 只有 audit 结论为通过或有条件通过时才能执行，并由 OpenCode 执行本轮 workflow 相关的 git commit。
+
+```md
+# NNN.task-title
+
+- 记录类型: OpenCode commit record
+- 来源 Task: .openpm/progression/02.task/<task>.md
+- 来源 SOW: .openpm/progression/03.sow/<sow>.md
+- 来源 Coding Report: .openpm/progression/04.coding/<coding>.md
+- 来源 Audit: .openpm/progression/05.audit/<audit>.md
+- Audit 结论: 通过 | 有条件通过
+
+## 摘要
+## Commit Message
+## 提交范围
+## 代码行数
+## 风险
+```

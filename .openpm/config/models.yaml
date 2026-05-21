@@ -1,0 +1,45 @@
+# active：后续 Agent 命令默认使用的模型别名；可通过 `openpm model <alias>` 修改。
+active: yemoren/gpt-5.5
+# models：可选模型别名集合；每个别名只保存模型路由信息，不保存真实 API key。
+models:
+  # openai-mini：模型别名配置；可在 CLI 中通过 --model openai-mini 临时使用。
+  naapi/gpt-5.5:
+    # provider：模型供应商标识，用于日志、看板和 @openai/agents provider 选择。
+    provider: naapi
+    # baseUrl：OpenAI-compatible API base URL。
+    baseUrl: https://naapi.cc/v1
+    # apiKeyEnv：真实 API key 所在环境变量名；只有该字段指向的 key 从环境变量读取。
+    apiKeyEnv: NAAPI_API_KEY
+    # model：供应商侧真实模型名称。
+    model: gpt-5.5
+
+  naapi/gpt-5.4:
+    provider: naapi
+    baseUrl: https://naapi.cc/v1
+    apiKeyEnv: NAAPI_API_KEY
+    model: gpt-5.4
+
+  naapi/gpt-5.3-codex:
+    provider: naapi
+    baseUrl: https://naapi.cc/v1
+    apiKeyEnv: NAAPI_API_KEY
+    model: gpt-5.3-codex
+
+
+  yemoren/gpt-5.5:
+    provider: yemoren
+    baseUrl: https://jp.yemoren.site/v1
+    apiKeyEnv: YEMOREN_API_KEY
+    model: gpt-5.5
+
+  yemoren/gpt-5.4:
+    provider: yemoren
+    baseUrl: https://jp.yemoren.site/v1
+    apiKeyEnv: YEMOREN_API_KEY
+    model: gpt-5.4
+
+  yemoren/gpt-5.3-codex:
+    provider: yemoren
+    baseUrl: https://jp.yemoren.site/v1
+    apiKeyEnv: YEMOREN_API_KEY
+    model: gpt-5.3-codex

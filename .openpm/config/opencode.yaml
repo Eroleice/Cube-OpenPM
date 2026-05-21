@@ -1,0 +1,4 @@
+# modelAlias：OpenCode 执行器使用的模型别名；必须存在于 models.yaml，baseUrl、model 和 apiKeyEnv 都从该别名对应配置读取；留空时使用 models.yaml 的 active。
+modelAlias: yemoren/gpt-5.3-codex
+# requireReport：OpenCode 执行后是否要求生成 coding report；当前 OpenPM 固定要求为 true。
+requireReport: true

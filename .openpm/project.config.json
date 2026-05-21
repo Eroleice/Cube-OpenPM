@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "name": "OpenPM Project",
+  "workspaceVersion": "0.1.0",
+  "defaultWorkflow": "idea-design-msc-milestone-task",
+  "memory": {
+    "enabled": true,
+    "maxContextChars": 20000
+  }
+}

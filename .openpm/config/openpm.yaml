@@ -1,0 +1,16 @@
+# agent：OpenPM 调用 @openai/agents 的运行时设置。
+agent:
+  # timeoutMs：单次 Agent 调用最长等待时间，单位毫秒。
+  timeoutMs: 300000
+  # stream：Agent 输出流式模式和失败回退策略。
+  stream:
+    # enabled：是否优先使用 stream 模式生成 Markdown。
+    enabled: true
+    # retries：stream 模式失败后的重试次数；总尝试次数为 retries + 1。
+    retries: 2
+    # fallbackNonStreamRetries：stream 全部失败后，non-stream 模式的最多尝试次数。
+    fallbackNonStreamRetries: 2
+# dashboard：只读本地 Web 看板设置。
+dashboard:
+  # port：`openpm dashboard` 未显式传入 --port 时使用的默认端口。
+  port: 5177
