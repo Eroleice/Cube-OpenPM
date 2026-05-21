@@ -31,7 +31,7 @@ entryStages:
 
 - 所有工作流都必须从当前仓库事实和 `.openpm/` 内的 artifact 出发。
 - Agent 只负责分析、设计、规划、交接、审查或调度；真实文件修改、命令执行和报告落盘必须由本地工具或 OpenCode 完成。
-- Agent 可以使用 `read_project_file` 只读工具读取 `.openpm`、`src`、`test` 下的目标文本文件；该工具不能列目录、写文件或运行命令。
+- Agent 可以使用 `read_project_file` 只读工具读取 `.openpm`、`src`、`test`、`tests` 下的目标文本文件；audit 场景还可以读取 Coding Report 或 git diff 证据中明确列出的具体文件。该工具不能列目录、写文件或运行命令。
 - 输出必须区分当前事实、设计蓝图、Agent 推断、用户待确认事项和建议执行项。
 - 不得把本地骨架产物当成真实执行证据。
 - 所有密钥只能来自环境变量，不得写入 `.openpm/`、日志、report 或 artifact。
@@ -88,7 +88,7 @@ entryStages:
 6. 门禁核验（QA + 必要专家）：QA 确认输出满足 workflow 要求，并覆盖所有输入需求；如果包含功能行为修改，Producer 必须核验是否影响其他功能或后续切片；如果包含项目结构、模块边界、目录结构、shared contract、schema、API 或数据流改变，Architect 必须作为 TA 核验是否影响其他结构。
 7. 任务报告（Orchestrator）：输出结果、路径、下一步，并按项目记忆格式记录 `project-memory.md`。
 
-当前 CLI 对完整会诊路径会先生成精简上下文包，再自动执行专家会诊、Orchestrator 整合和门禁核验；专家、整合和门禁优先读取上下文包，最终主责 Agent 再读取完整必要上下文和会诊记录生成 artifact。`code -> audit` 阶段例外：如果上下文包显示审计证据被截断，门禁 Agent 可以读取明确相关的 progression artifact、源码、测试和工程配置文件补齐证据。
+当前 CLI 对完整会诊路径会先生成精简上下文包，再自动执行专家会诊、Orchestrator 整合和门禁核验；专家、整合和门禁优先读取上下文包，最终主责 Agent 再读取完整必要上下文和会诊记录生成 artifact。`code -> audit` 阶段例外：如果上下文包显示审计证据被截断，门禁 Agent 可以读取明确相关的 progression artifact、源码、测试和工程配置文件补齐证据；若文件路径来自 Coding Report 或 git diff 证据，即使不在默认源码目录中，也可以作为具体文件读取。
 
 ## 默认阶段路由
 
