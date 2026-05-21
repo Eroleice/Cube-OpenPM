@@ -2,7 +2,7 @@
 id: qa
 name: 质量控制
 kind: core
-defaultModel: yemoren/gpt-5.5
+defaultModel: yemoren/gpt-5.4
 reasoningEffort: high
 capabilities:
   - quality-gate

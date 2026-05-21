@@ -90,6 +90,13 @@ entryStages:
 
 当前 CLI 对完整会诊路径会先生成精简上下文包，再自动执行专家会诊、Orchestrator 整合和门禁核验；专家、整合和门禁优先读取上下文包，最终主责 Agent 再读取完整必要上下文和会诊记录生成 artifact。`code -> audit` 阶段例外：如果上下文包显示审计证据被截断，门禁 Agent 可以读取明确相关的 progression artifact、源码、测试和工程配置文件补齐证据；若文件路径来自 Coding Report 或 git diff 证据，即使不在默认源码目录中，也可以作为具体文件读取。
 
+`code -> audit` 的门禁证据升级规则：
+
+- 门禁 Agent 不得只因摘要上下文被截断而直接形成最终阻塞；如果需要全文，必须说明具体文件或证据、摘要为什么不足，以及该证据对应的 SOW、Coding Report 或 git diff 条目。
+- 当门禁首次因“上下文截断、证据不足、需要全文、缺少源码/测试/配置内容、无法核验”等原因给出 `阻塞` 或 `需要返工` 时，OpenPM 会自动生成一次受控全文证据包并重跑该门禁。
+- 受控全文证据包只包含当前 workflow artifact、完整 git status/diff、diff/status 中列出的源码、测试和工程配置文本文件；不得读取 `.env`、`.git/`、`node_modules/`、`dist/`、`coverage/`、`.openpm/logs/`、`.openpm/tmp/` 或路径穿越目标。
+- 证据升级重试后，门禁不得再仅因首次摘要被截断而阻塞；若仍阻塞，必须指向具体源码事实、测试断言、配置内容、命令结果或 SOW 条目。
+
 ## 默认阶段路由
 
 - `idea -> design`：Designer 直接根据 design prompt 生成 DESIGN，不调用 Orchestrator。

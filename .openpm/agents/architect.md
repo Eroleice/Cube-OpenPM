@@ -2,7 +2,7 @@
 id: architect
 name: 架构师
 kind: core
-defaultModel: yemoren/gpt-5.5
+defaultModel: yemoren/gpt-5.4
 reasoningEffort: high
 capabilities:
   - architecture

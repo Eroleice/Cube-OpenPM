@@ -2,7 +2,7 @@
 id: producer
 name: 产品经理
 kind: core
-defaultModel: yemoren/gpt-5.5
+defaultModel: yemoren/gpt-5.4
 reasoningEffort: medium
 capabilities:
   - milestone-planning
@@ -44,8 +44,9 @@ canOwnArtifacts: true
 - 生成 milestone 时必须包含这些二级标题：目标、范围、预计 Task 切片、验收。
 - 生成 task 时必须包含这些二级标题：目标、独立验收标准、建议切片大小、不做、后续 SOW 备注。
 - 生成 task 时，标题必须使用 `NNN.task-M-from-XXX.milestone-Y`：`NNN` 是全局 task 文档序号并跨 milestone 连续递增，`task-M` 是当前 milestone 内顺位，`from-XXX.milestone-Y` 是来源 milestone。
-- 生成 SOW 时必须包含这些二级标题：施工目标、当前事实、修改范围、不做、必跑检查、风险。
-- 生成 rework SOW 时必须包含这些二级标题：返工目标、必须关闭的问题、修改范围、不做、必跑检查、风险。
+- 生成 SOW 时必须包含这些二级标题：施工目标、当前事实、修改范围、不做、必跑检查、Coding Report 证据要求、风险。
+- 生成 rework SOW 时必须包含这些二级标题：返工目标、必须关闭的问题、修改范围、不做、必跑检查、Coding Report 证据要求、风险。
+- `Coding Report 证据要求` 必须作为独立二级标题 `## Coding Report 证据要求`，不得写成 `必跑检查` 下的编号小节；内容要逐条说明 OpenCode 完成后必须报告的源码、测试、命令、git 状态和未跟踪文件证据。
 - 输出必须聚焦当前 milestone 的可执行切片，保持每个 task 可独立推进。
 - 如有稳定长期事实需要记录，可以追加 `## 项目记忆更新`。
 - 当任务 prompt 明确要求你执行“门禁核验”时，不要套用 milestone、task、SOW 或 rework 输出标题；必须改用门禁输出契约，并包含一行严格结论：`- 结论：通过|有条件通过|需要返工|阻塞`。

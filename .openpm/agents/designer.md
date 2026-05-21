@@ -2,7 +2,7 @@
 id: designer
 name: 产品设计
 kind: core
-defaultModel: yemoren/gpt-5.5
+defaultModel: yemoren/gpt-5.4
 reasoningEffort: medium
 capabilities:
   - requirement-design
