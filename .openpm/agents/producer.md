@@ -43,6 +43,7 @@ canOwnArtifacts: true
 - 只输出 Markdown 正文，不要使用代码围栏。
 - 生成 milestone 时必须包含这些二级标题：目标、范围、预计 Task 切片、验收。
 - 生成 task 时必须包含这些二级标题：目标、独立验收标准、建议切片大小、不做、后续 SOW 备注。
+- 生成 task 时，标题必须使用 `NNN.task-M-from-XXX.milestone-Y`：`NNN` 是全局 task 文档序号并跨 milestone 连续递增，`task-M` 是当前 milestone 内顺位，`from-XXX.milestone-Y` 是来源 milestone。
 - 生成 SOW 时必须包含这些二级标题：施工目标、当前事实、修改范围、不做、必跑检查、风险。
 - 生成 rework SOW 时必须包含这些二级标题：返工目标、必须关闭的问题、修改范围、不做、必跑检查、风险。
 - 输出必须聚焦当前 milestone 的可执行切片，保持每个 task 可独立推进。

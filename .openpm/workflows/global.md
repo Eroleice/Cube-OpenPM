@@ -88,7 +88,7 @@ entryStages:
 6. 门禁核验（QA + 必要专家）：QA 确认输出满足 workflow 要求，并覆盖所有输入需求；如果包含功能行为修改，Producer 必须核验是否影响其他功能或后续切片；如果包含项目结构、模块边界、目录结构、shared contract、schema、API 或数据流改变，Architect 必须作为 TA 核验是否影响其他结构。
 7. 任务报告（Orchestrator）：输出结果、路径、下一步，并按项目记忆格式记录 `project-memory.md`。
 
-当前 CLI 对完整会诊路径会先生成精简上下文包，再自动执行专家会诊、Orchestrator 整合和门禁核验；专家、整合和门禁只读取上下文包，最终主责 Agent 才读取完整必要上下文和会诊记录生成 artifact。
+当前 CLI 对完整会诊路径会先生成精简上下文包，再自动执行专家会诊、Orchestrator 整合和门禁核验；专家、整合和门禁优先读取上下文包，最终主责 Agent 再读取完整必要上下文和会诊记录生成 artifact。`code -> audit` 阶段例外：如果上下文包显示审计证据被截断，门禁 Agent 可以读取明确相关的 progression artifact、源码、测试和工程配置文件补齐证据。
 
 ## 默认阶段路由
 

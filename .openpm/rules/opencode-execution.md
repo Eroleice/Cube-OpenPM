@@ -38,6 +38,8 @@ OpenCode 是默认唯一允许修改项目源码的 runtime。
 - 文件和目录命名应体现模块职责。不要创建 `utils.ts`、`helpers.ts` 这类泛化垃圾桶文件；如需工具函数，应按领域或能力命名，例如 `inventoryMath.ts`、`saveMigration.ts`。
 - 导入方向应保持清晰：领域层不得导入应用层、表现层、运行时适配或平台层。
 - 实现完成后，如果项目提供 typecheck 脚本，必须运行对应 typecheck；涉及构建入口、配置或导出边界时还必须运行对应 build。常见命令包括 `npm run typecheck`、`pnpm typecheck`、`npm run build` 或项目已有等价命令。
+- 对所有 npm、pnpm、yarn、bun、git、tsc、vitest、jest、build、typecheck、lint、test 等测试或验证命令，如果返回结果通过且符合预期，最终报告只记录该命令已通过，不要粘贴完整成功输出；如果失败、超时或输出异常，必须记录必要失败输出、退出码和影响。
+- 最终终端摘要只允许按“命令 / 通过状态 / 是否符合 SOW 要求 / 必要风险”汇总，不要粘贴 stdout、stderr、JSON tool event、metadata、package.json 全文、git status 全文或测试框架完整输出。
 
 ## 代码注释规则
 
