@@ -37,8 +37,3 @@
 ## 2026-05-21T14:38:53.769Z architect
 
 - 本次完成：生成浏览器 3D 魔方项目的 MSC 架构边界，相关产物应落入 `.openpm/progression/00.documents/MSC.md`。
-
-
-## 2026-05-21T15:43:36.855Z qa
-
-- 本次完成：完成 `001.task-1-from-001.milestone-1` 的 QA audit，结论为阻塞；OpenCode 按 SOW 停止条件中止，未产生产品代码 diff，相关产物见 `.openpm/progression/03.sow/001.task-1-from-001.milestone-1.md`、`.openpm/progression/04.coding/001.task-1-from-001.milestone-1.md`、`.openpm/progression/05.audit/001.task-1-from-001.milestone-1.md`。

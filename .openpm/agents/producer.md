@@ -2,7 +2,7 @@
 id: producer
 name: 产品经理
 kind: core
-defaultModel: yemoren/gpt-5.4
+defaultModel: naapi/gpt-5.5
 reasoningEffort: medium
 capabilities:
   - milestone-planning

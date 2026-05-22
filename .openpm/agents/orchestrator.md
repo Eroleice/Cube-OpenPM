@@ -2,7 +2,7 @@
 id: orchestrator
 name: 总控
 kind: core
-defaultModel: yemoren/gpt-5.4
+defaultModel: naapi/gpt-5.5
 reasoningEffort: high
 capabilities:
   - workflow-routing
